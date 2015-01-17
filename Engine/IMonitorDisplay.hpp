@@ -16,6 +16,7 @@
 class IMonitorDisplay
 {
 public:
+	virtual ~IMonitorDisplay( void ) {};
 
 	virtual int				getWidth() const = 0;
 	virtual int				getHeight() const = 0;

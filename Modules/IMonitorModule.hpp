@@ -16,6 +16,7 @@
 class IMonitorModule
 {
 	public:
+		virtual ~IMonitorModule( void ) {};
 		virtual std::string const &		getTitle( void ) const = 0;
 
 	private:
