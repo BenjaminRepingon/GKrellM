@@ -1,0 +1,1 @@
+# include "Engine/CoreEngine.hpp"# include "GKrellMProgram.hpp"int		main( void ){    Program *program = new GKrellMProgram();    CoreEngine *engine = new CoreEngine( 60, *program );//    engine->createWindow();    engine->start();    delete engine;    return ( 0 );}
