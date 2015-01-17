@@ -19,9 +19,9 @@ public:
 
 	Vector2f &						getPos() const;
 
-	virtual void					addChild( ProgramObject & child );
-	virtual void					removeChild( ProgramObject & child );
-	virtual void					addComponent( ProgramComponent & component );
+	virtual void					addChild( ProgramObject * child );
+	virtual void					removeChild( ProgramObject * child );
+	virtual void					addComponent( ProgramComponent * component );
 	virtual void					renderAll( RenderEngine & renderEngine );
 	virtual void					render( RenderEngine & renderEngine );
 	virtual void					inputAll( float delta );
@@ -34,6 +34,7 @@ public:
 	std::vector<ProgramComponent *>	getComponents( void ) const;
 	CoreEngine &					getCoreEngine() const;
 	ProgramObject &					getParent( void ) const;
+	void							setParent( ProgramObject * value );
 	void							setPos( Vector2f & value );
 	void							setCoreEngine( CoreEngine & engine );
 

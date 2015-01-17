@@ -55,7 +55,7 @@ void	Program::render( RenderEngine & renderEngine )
 	this->getRootObject().renderAll( renderEngine );
 }
 
-void	Program::addObject( ProgramObject & object )
+void	Program::addObject( ProgramObject * object )
 {
 	this->getRootObject().addChild( object );
 }

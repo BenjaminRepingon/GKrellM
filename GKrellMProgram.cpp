@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   GKrellMProgram.cpp                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
+/*   Updated: 2015/01/17 17:33:01 by dsousa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include <iostream>
 # include "GKrellMProgram.hpp"
-# include "Modules/Test.hpp"
+# include "Modules/ModuleObject.hpp"
+# include "Components/Hostname.hpp"
 
 GKrellMProgram::GKrellMProgram() : Program()
 {
@@ -30,9 +43,10 @@ bool			GKrellMProgram::init()
 {
 	// START INIT
 
-	Test *test = new Test();
+	ModuleObject *hostnameModule = new ModuleObject( "Hostname" );
+	hostnameModule->addComponent( new Hostname() );
 
-	addObject( *test );
+	addObject( hostnameModule );
 
 	// END INIT
 	return ( true );

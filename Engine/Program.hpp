@@ -16,7 +16,7 @@ public:
 	virtual void	input( float delta );
 	virtual void	update( float delta );
 	virtual void	render( RenderEngine & renderEngine );
-	virtual void	addObject( ProgramObject & object );
+	virtual void	addObject( ProgramObject * object );
 	ProgramObject &	getRoot() const;
 	void			setEngine( CoreEngine & engine );
 
