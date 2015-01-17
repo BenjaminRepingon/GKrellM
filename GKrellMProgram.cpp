@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 19:02:03 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/17 19:23:24 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "Components/Hostname.hpp"
 # include "Components/Username.hpp"
 # include "Components/CurrentTime.hpp"
+# include "Components/OSInfo.hpp"
 
 GKrellMProgram::GKrellMProgram() : Program()
 {
@@ -48,6 +49,7 @@ bool			GKrellMProgram::init()
 	ModuleObject *hostnameModule = new ModuleObject( "Hostname" );
 	hostnameModule->addComponent( new Hostname() );
 	hostnameModule->addComponent( new Username() );
+	hostnameModule->addComponent( new OSInfo() );
 	hostnameModule->addComponent( new CurrentTime() );
 
 	addObject( hostnameModule );
