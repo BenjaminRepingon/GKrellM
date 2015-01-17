@@ -27,7 +27,7 @@ SRCS			=	$(NAME).cpp							\
 					Engine/Input.cpp					\
 					Engine/Program.cpp					\
 					\
-					#Components/
+					Modules/Test.cpp
 
 OBJS			=	$(SRCS:.cpp=.o)
 

@@ -99,6 +99,7 @@ void 			ProgramObject::updateAll( float delta )
 
 void			ProgramObject::update( float delta )
 {
+	std::cout << "pok" << std::endl;
 	for ( int i = 0; i < this->_nbComponents; i++ )
 		this->_components[i]->update( delta );
 }

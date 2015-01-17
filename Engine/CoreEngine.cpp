@@ -78,7 +78,8 @@ int				CoreEngine::run()
 	while ( this->_isRunning )
 	{
 		startTime = getTime();
-		clear();
+		if ( this->_renderEngine )
+			clear();
 		Input::update();
 		if ( Input::isKeyDown( 27 ) )
 			this->stop();
@@ -89,7 +90,6 @@ int				CoreEngine::run()
 			this->_program->render( *this->_renderEngine );
 			wrefresh( &getRenderEngine().getWindow() );
 		}
-		refresh();
 		endTime = getTime();
 		usleep( ( 1000000 / this->_framerate ) - ( endTime - startTime ) );
 	}

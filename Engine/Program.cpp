@@ -1,12 +1,9 @@
 # include "Program.hpp"
 # include "CoreEngine.hpp"
-#include <cstdlib>
-#include <ctime>
 
 Program::Program() :
 	_root( 0 )
 {
-	std::srand(std::time(0));
 	return ;
 }
 
@@ -19,7 +16,6 @@ Program::Program( Program const & src ) :
 
 Program::~Program()
 {
-	std::srand(std::time(0));
 	return ;
 }
 
@@ -61,8 +57,7 @@ void	Program::render( RenderEngine & renderEngine )
 
 void	Program::addObject( ProgramObject & object )
 {
-	if ( &object )
-		this->getRootObject().addChild( object );
+	this->getRootObject().addChild( object );
 }
 
 void	Program::setEngine( CoreEngine & engine )
