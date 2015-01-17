@@ -12,9 +12,9 @@
 
 #ifndef GRAPHIC_RENDER_ENGINE
 # define GRAPHIC_RENDER_ENGINE
-# include "IRenderEngine.hpp"
+# include "IMonitorDisplay.hpp"
 
-class GraphicRenderEngine : public IRenderEngine
+class GraphicRenderEngine : public IMonitorDisplay
 {
 public:
 	GraphicRenderEngine( void );

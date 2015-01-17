@@ -13,12 +13,12 @@
 #ifndef NCURSES_RENDER_ENGINE
 # define NCURSES_RENDER_ENGINE
 # include <ncurses.h>
-# include "IRenderEngine.hpp"
+# include "IMonitorDisplay.hpp"
 # define SET_COLOR(COLOR) (attron(COLOR_PAIR(COLOR)))
 # define COLOR_GRAY (COLOR_WHITE + 1)
 # define COLOR_HIGH_YELLOW (COLOR_WHITE + 2)
 
-class NcursesRenderEngine : public IRenderEngine
+class NcursesRenderEngine : public IMonitorDisplay
 {
 public:
 	NcursesRenderEngine( void );

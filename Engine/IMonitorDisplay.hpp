@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef I_RENDER_ENGINE
-# define I_RENDER_ENGINE
+#ifndef I_MONITOR_DISPLAY
+# define I_MONITOR_DISPLAY
 
-class IRenderEngine
+class IMonitorDisplay
 {
 public:
 
