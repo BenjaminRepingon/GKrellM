@@ -22,11 +22,6 @@ public:
 	virtual int				getHeight() const = 0;
 
 private:
-//	IRenderEngine( void );
-//	IRenderEngine( IRenderEngine const & src );
-//	virtual ~IRenderEngine( void );
-//
-//	IRenderEngine &	operator=( IRenderEngine const & rhs );
 };
 
 #endif

@@ -13,7 +13,18 @@
 # include <iostream>
 # include "ModuleObject.hpp"
 
-ModuleObject::ModuleObject( std::string const & title ) : ProgramObject(), _title( title )
+ModuleObject::ModuleObject( std::string const & title ) : ProgramObject(),
+	_title( title ),
+	_pos( 0, 0 ),
+	_widthHeight( 0, 0 )
+{
+	return ;
+}
+
+ModuleObject::ModuleObject( std::string const & title, Vector2f const & pos, Vector2f const & widthHeight ) : ProgramObject(),
+	_title( title ),
+	_pos( pos ),
+	_widthHeight( widthHeight )
 {
 	return ;
 }
@@ -48,8 +59,17 @@ void	ModuleObject::update( float delta )
 	ProgramObject::update( delta );
 }
 
-
 std::string const &		ModuleObject::getTitle( void ) const
 {
 	return ( this->_title );
+}
+
+int						ModuleObject::getWidth( void ) const
+{
+	return ( static_cast<int>( this->_widthHeight.getX() ) );
+}
+
+int						ModuleObject::getHeight( void ) const
+{
+	return ( static_cast<int>( this->_widthHeight.getY() ) );
 }

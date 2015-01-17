@@ -31,7 +31,7 @@ Vector2f::Vector2f( float x, float y ) : _x( x ), _y( y )
 	return ;
 }
 
-Vector2f::Vector2f( Vector2f & cpy )
+Vector2f::Vector2f( Vector2f const & cpy )
 {
 	*this = cpy;
 
@@ -76,7 +76,7 @@ Vector2f			Vector2f::abs( void ) const
 ** OPERATOR
 */
 
-Vector2f &		Vector2f::operator=( Vector2f & rhs )
+Vector2f &		Vector2f::operator=( Vector2f const & rhs )
 {
 	this->_x = rhs.getX();
 	this->_y = rhs.getY();

@@ -22,10 +22,10 @@ class Vector2f
 		Vector2f( void );
 		Vector2f( int x, int y );
 		Vector2f( float x, float y );
-		Vector2f( Vector2f & cpy );
+		Vector2f( Vector2f const & cpy );
 		~Vector2f( void );
 
-		Vector2f &		operator=( Vector2f & rhs );
+		Vector2f &		operator=( Vector2f const & rhs );
 		Vector2f &		operator+( Vector2f & rhs ) const;
 		Vector2f &		operator-( Vector2f & rhs ) const;
 		Vector2f &		operator*( float rhs ) const;

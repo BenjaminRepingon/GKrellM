@@ -18,6 +18,8 @@ class IMonitorModule
 	public:
 		virtual ~IMonitorModule( void ) {};
 		virtual std::string const &		getTitle( void ) const = 0;
+		virtual int						getWidth( void ) const = 0;
+		virtual int						getHeight( void ) const = 0;
 
 	private:
 

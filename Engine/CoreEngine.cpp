@@ -89,11 +89,20 @@ int				CoreEngine::run()
 			this->stop();
 		this->_program->input( _framerate );
 		this->_program->update( _framerate );
+
+		// GRAPHIC
+		if ( this->_graphicRenderEngine )
+		{
+			this->_program->graphicRender( *this->_graphicRenderEngine );
+		}
+
+		// NCURSES
 		if ( this->_ncursesRenderEngine )
 		{
 			this->_program->ncursesRender( *this->_ncursesRenderEngine );
 			wrefresh( &getNcursesRenderEngine().getWindow() );
 		}
+
 		endTime = getTime();
 		usleep( ( 1000000 / this->_framerate ) - ( endTime - startTime ) );
 	}
