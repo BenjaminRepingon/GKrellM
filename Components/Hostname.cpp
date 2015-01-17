@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Hostname.hpp"
-#include <iostream>
-#include <sys/utsname.h>
+# include "Hostname.hpp"
+# include <iostream>
+# include <sys/utsname.h>
+# include <sstream>
+# include "../Engine/GeometricDrawer.hpp"
 
 Hostname::Hostname() : ProgramComponent()
 {
@@ -43,15 +45,20 @@ void			Hostname::input( float delta )
 
 void			Hostname::update( float delta )
 {
+	(void)delta;
+}
+void			Hostname::ncursesRender( NcursesRenderEngine & renderEngine )
+{
 	struct utsname info;
 	if(uname(&info) != -1)
 		this->_hostname = info.nodename;
 
-	std::cout << this->_hostname << std::endl;
-	(void)delta;
-}
-void			Hostname::graphicRender( GraphicRenderEngine & renderEngine )
-{
-	(void)renderEngine;
+	std::stringstream ss;
+	ss << this->_hostname;
 
+	GeometricDrawer::drawRectangleBorder( Vector2f( 0, 0 ), 20, 5 );
+
+	mvprintw( 1, 3, "Hostname:" );
+	mvprintw( 3, 3, ss.str().c_str() );
+	(void)renderEngine;
 }

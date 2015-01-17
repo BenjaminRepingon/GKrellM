@@ -26,7 +26,7 @@ class Hostname : public ProgramComponent
 
 		virtual void			input( float delta );
 		virtual void			update( float delta );
-		virtual void			graphicRender( GraphicRenderEngine & renderEngine );
+		virtual void			ncursesRender( NcursesRenderEngine & renderEngine );
 
 	private:
 		std::string				_hostname;

@@ -27,6 +27,7 @@ SRCS			=	$(NAME).cpp							\
 					Engine/ProgramComponent.cpp			\
 					Engine/Input.cpp					\
 					Engine/Program.cpp					\
+					Engine/GeometricDrawer.cpp			\
 					\
 					Modules/ModuleObject.cpp			\
 					\
