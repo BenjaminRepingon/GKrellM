@@ -55,12 +55,12 @@ void	Program::ncursesRender( NcursesRenderEngine & renderEngine )
 	this->getRootObject().ncursesRenderAll( renderEngine );
 }
 
-//void	Program::ncursesRender( NcursesRenderEngine & renderEngine )
-//{
-//	this->getRootObject().ncursesRenderAll( renderEngine );
-//}
+void	Program::graphicRender( GraphicRenderEngine & renderEngine )
+{
+	this->getRootObject().graphicRenderAll( renderEngine );
+}
 
-void	Program::addObject( ProgramObject & object )
+void	Program::addObject( ProgramObject * object )
 {
 	this->getRootObject().addChild( object );
 }

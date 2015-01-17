@@ -40,10 +40,10 @@ void			ProgramComponent::ncursesRender( NcursesRenderEngine & renderEngine )
 	(void)renderEngine;
 }
 
-//void			ProgramComponent::render( RenderEngine & renderEngine )
-//{
-//	(void)renderEngine;
-//}
+void			ProgramComponent::graphicRender( GraphicRenderEngine & renderEngine )
+{
+	(void)renderEngine;
+}
 
 ProgramObject &	ProgramComponent::getParent() const
 {

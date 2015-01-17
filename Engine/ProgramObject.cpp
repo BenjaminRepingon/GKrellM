@@ -36,22 +36,23 @@ ProgramObject &	ProgramObject::operator=( ProgramObject const & rhs )
 	return ( *this );
 }
 
-void			ProgramObject::addChild( ProgramObject & child )
+void			ProgramObject::addChild( ProgramObject * child )
 {
-	this->_childrens.push_back( &child );
+	child->setParent( this );
+	this->_childrens.push_back( child );
 }
 
-void			ProgramObject::removeChild( ProgramObject & child )
+void			ProgramObject::removeChild( ProgramObject * child )
 {
 	std::vector<ProgramObject *>::iterator it;
-	it = std::find( this->_childrens.begin(), this->_childrens.end(), &child );
+	it = std::find( this->_childrens.begin(), this->_childrens.end(), child );
 	this->_childrens.erase( it );
 }
 
-void			ProgramObject::addComponent( ProgramComponent & component )
+void			ProgramObject::addComponent( ProgramComponent * component )
 {
-	this->_components[this->_components.size()] = &component;
-	this->_components[this->_components.size()]->setParent( *this );
+	component->setParent( *this );
+	this->_components.push_back( component );
 }
 
 void			ProgramObject::init( CoreEngine & coreEngine )
@@ -72,6 +73,20 @@ void			ProgramObject::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	for ( size_t i = 0; i < this->_components.size(); i++ )
 		this->_components[i]->ncursesRender( renderEngine );
+}
+
+void 			ProgramObject::graphicRenderAll( GraphicRenderEngine & renderEngine )
+{
+	graphicRender( renderEngine );
+
+	for ( size_t i = 0; i < this->_childrens.size(); i++ )
+		this->_childrens[i]->graphicRenderAll( renderEngine );
+}
+
+void			ProgramObject::graphicRender( GraphicRenderEngine & renderEngine )
+{
+	for ( size_t i = 0; i < this->_components.size(); i++ )
+		this->_components[i]->graphicRender( renderEngine );
 }
 
 void 			ProgramObject::inputAll( float delta )
@@ -110,6 +125,13 @@ void			ProgramObject::setCoreEngine( CoreEngine & engine )
 		for ( size_t i = 0; i < this->_childrens.size(); i++ )
 			this->_childrens[i]->setCoreEngine( engine );
 	}
+}
+
+void				ProgramObject::setParent( ProgramObject * value )
+{
+	this->_parent = value;
+
+	return ;
 }
 
 void				ProgramObject::setPos( Vector2f & value )
