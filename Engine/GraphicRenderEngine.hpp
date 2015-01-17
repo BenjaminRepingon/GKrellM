@@ -12,6 +12,9 @@
 
 #ifndef GRAPHIC_RENDER_ENGINE
 # define GRAPHIC_RENDER_ENGINE
+//# include <gtk/gtk.h>
+# include "SDL.h"
+# include <stdio.h>
 # include "IMonitorDisplay.hpp"
 
 class GraphicRenderEngine : public IMonitorDisplay
@@ -25,10 +28,13 @@ public:
 
 	virtual int				getWidth() const;
 	virtual int				getHeight() const;
+	virtual void			init( void );
+	bool 					isInit( void );
 
 private:
 	int						_width;
 	int						_height;
+	bool					_isInit;
 };
 
 #endif

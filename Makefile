@@ -38,8 +38,7 @@ SRCS			=	$(NAME).cpp							\
 
 OBJS			=	$(SRCS:.cpp=.o)
 
-INCLUDES		=	-lncurses
-
+INCLUDES		=	-lncurses -lSDL2 -L./sdl2/2.0.3/lib/ -I./sdl2/2.0.3/include/SDL2/
 
 all:			$(NAME)
 

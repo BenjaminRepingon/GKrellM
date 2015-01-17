@@ -12,7 +12,32 @@
 
 # include "NcursesRenderEngine.hpp"
 
-NcursesRenderEngine::NcursesRenderEngine()
+NcursesRenderEngine::NcursesRenderEngine() :
+	_isInit( false)
+{
+	return ;
+}
+
+NcursesRenderEngine::NcursesRenderEngine( NcursesRenderEngine const & src )
+{
+	*this = src;
+	return ;
+}
+
+NcursesRenderEngine::~NcursesRenderEngine()
+{
+	return ;
+}
+
+NcursesRenderEngine &	NcursesRenderEngine::operator=( NcursesRenderEngine const & rhs )
+{
+	if ( this != &rhs )
+	{
+	}
+	return ( *this );
+}
+
+void			NcursesRenderEngine::init( void )
 {
 	initscr();
 	start_color();
@@ -34,26 +59,12 @@ NcursesRenderEngine::NcursesRenderEngine()
 	init_pair( COLOR_GRAY, COLOR_GRAY, COLOR_BLACK );
 	init_color( COLOR_HIGH_YELLOW, 800, 800, 400);
 	init_pair( COLOR_HIGH_YELLOW, COLOR_GRAY, COLOR_BLACK );
-	return ;
+	this->_isInit = true;
 }
 
-NcursesRenderEngine::NcursesRenderEngine( NcursesRenderEngine const & src )
+bool			NcursesRenderEngine::isInit()
 {
-	*this = src;
-	return ;
-}
-
-NcursesRenderEngine::~NcursesRenderEngine()
-{
-	return ;
-}
-
-NcursesRenderEngine &	NcursesRenderEngine::operator=( NcursesRenderEngine const & rhs )
-{
-	if ( this != &rhs )
-	{
-	}
-	return ( *this );
+	return ( this->_isInit );
 }
 
 WINDOW &		NcursesRenderEngine::getWindow() const

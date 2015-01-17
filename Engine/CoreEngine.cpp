@@ -49,10 +49,16 @@ CoreEngine &	CoreEngine::operator=( CoreEngine const & rhs )
 
 bool			CoreEngine::createWindow( int mode )
 {
-	if ( ( mode & NCURSES ) == NCURSES )
-		this->_ncursesRenderEngine = new NcursesRenderEngine();
 	if ( ( mode & GRAPHIC ) == GRAPHIC )
+	{
 		this->_graphicRenderEngine = new GraphicRenderEngine();
+		this->_graphicRenderEngine->init();
+	}
+	if ( ( mode & NCURSES ) == NCURSES )
+	{
+		this->_ncursesRenderEngine = new NcursesRenderEngine();
+		this->_ncursesRenderEngine->init();
+	}
 	return ( true );
 }
 
@@ -82,7 +88,7 @@ int				CoreEngine::run()
 	while ( this->_isRunning )
 	{
 		startTime = getTime();
-		if ( this->_ncursesRenderEngine )
+		if ( this->_ncursesRenderEngine && this->_ncursesRenderEngine->isInit() )
 			clear();
 		Input::update();
 		if ( Input::isKeyDown( 27 ) )
@@ -91,13 +97,13 @@ int				CoreEngine::run()
 		this->_program->update( _framerate );
 
 		// GRAPHIC
-		if ( this->_graphicRenderEngine )
+		if ( this->_graphicRenderEngine && this->_graphicRenderEngine->isInit() )
 		{
 			this->_program->graphicRender( *this->_graphicRenderEngine );
 		}
 
 		// NCURSES
-		if ( this->_ncursesRenderEngine )
+		if ( this->_ncursesRenderEngine && this->_ncursesRenderEngine->isInit() )
 		{
 			this->_program->ncursesRender( *this->_ncursesRenderEngine );
 			wrefresh( &getNcursesRenderEngine().getWindow() );
@@ -106,11 +112,12 @@ int				CoreEngine::run()
 		endTime = getTime();
 		usleep( ( 1000000 / this->_framerate ) - ( endTime - startTime ) );
 	}
-	if ( this->_ncursesRenderEngine )
+	if ( this->_ncursesRenderEngine && this->_ncursesRenderEngine->isInit() )
 	{
 		delwin( &getNcursesRenderEngine().getWindow() );
 		endwin();
 	}
+	SDL_Quit();
 	return (0);
 }
 

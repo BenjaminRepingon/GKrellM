@@ -31,11 +31,15 @@ public:
 	virtual int				getHeight() const;
 
 	WINDOW &				getWindow() const;
+	virtual void			init( void );
+
+	bool 					isInit( void );
 
 private:
 	WINDOW*					_window;
 	int						_width;
 	int						_height;
+	bool					_isInit;
 };
 
 #endif
