@@ -6,11 +6,15 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 18:39:35 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:45:09 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/17 18:49:29 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Username.hpp"
+#include <sys/types.h>
+#include <pwd.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 Username::Username() : ProgramComponent()
 {
@@ -42,11 +46,13 @@ void			Username::input( float delta )
 
 void			Username::update( float delta )
 {
-	// struct utsname info;
-	// if(uname(&info) != -1)
-	// 	this->_username = info.nodename;
+	uid_t				id = getuid();
+	struct passwd		*pwd;
 
-	// std::cout << this->_username << std::endl;
+
+	pwd = getpwuid(id);
+	this->_username = pwd->pw_name;
+	std::cout << this->_username << std::endl;
 	(void)delta;
 }
 void			Username::graphicRender( GraphicRenderEngine & renderEngine )
