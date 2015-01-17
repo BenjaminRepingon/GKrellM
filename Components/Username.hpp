@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Hostname.hpp                                       :+:      :+:    :+:   */
+/*   Username.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 16:36:41 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:42:34 by dsousa           ###   ########.fr       */
+/*   Created: 2015/01/17 18:39:55 by dsousa            #+#    #+#             */
+/*   Updated: 2015/01/17 18:44:40 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOSTNAME
-#define HOSTNAME
+#ifndef USERNAME
+#define USERNAME
 #include "../Engine/ProgramComponent.hpp"
 #include <iostream>
 
-class Hostname : public ProgramComponent
+class Username : public ProgramComponent
 {
 	public:
-		Hostname();
-		Hostname( Hostname const & cpy );
-		~Hostname();
+		Username();
+		Username( Username const & cpy );
+		~Username();
 
-		Hostname &				operator=( Hostname const & lhs );
+		Username &				operator=( Username const & lhs );
 
 		virtual void			input( float delta );
 		virtual void			update( float delta );
 		virtual void			graphicRender( GraphicRenderEngine & renderEngine );
 
-		std::string				getHostname( void ) const;
+		std::string				getUsername( void ) const;
 
 	private:
-		std::string				_hostname;
+		std::string				_username;
 };
 
 #endif

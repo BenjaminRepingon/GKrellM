@@ -6,12 +6,11 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:44:37 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:34:42 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/17 18:43:10 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Hostname.hpp"
-#include <iostream>
 #include <sys/utsname.h>
 
 Hostname::Hostname() : ProgramComponent()
@@ -31,7 +30,8 @@ Hostname::~Hostname()
 
 Hostname &				Hostname::operator=( Hostname const & lhs )
 {
-	(void)lhs;
+	this->_hostname = lhs.getHostname();
+
 	return (*this);
 }
 
@@ -54,4 +54,9 @@ void			Hostname::graphicRender( GraphicRenderEngine & renderEngine )
 {
 	(void)renderEngine;
 
+}
+
+std::string		Hostname::getHostname( void ) const
+{
+	return ( this->_hostname );
 }
