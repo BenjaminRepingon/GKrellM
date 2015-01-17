@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Hostname.hpp                                       :+:      :+:    :+:   */
+/*   CurrentTime.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 16:36:41 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:53:06 by dsousa           ###   ########.fr       */
+/*   Created: 2015/01/17 18:52:11 by dsousa            #+#    #+#             */
+/*   Updated: 2015/01/17 18:54:21 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOSTNAME_HPP
-#define HOSTNAME_HPP
+#ifndef CURRENTTIME_HPP
+#define CURRENTTIME_HPP
 #include "../Engine/ProgramComponent.hpp"
 #include <iostream>
 
-class Hostname : public ProgramComponent
+class CurrentTime : public ProgramComponent
 {
 	public:
-		Hostname();
-		Hostname( Hostname const & cpy );
-		~Hostname();
+		CurrentTime();
+		CurrentTime( CurrentTime const & cpy );
+		~CurrentTime();
 
-		Hostname &				operator=( Hostname const & lhs );
+		CurrentTime &				operator=( CurrentTime const & lhs );
 
 		virtual void			input( float delta );
 		virtual void			update( float delta );
-		virtual void			ncursesRender( NcursesRenderEngine & renderEngine );
+		virtual void			graphicRender( GraphicRenderEngine & renderEngine );
 
-		std::string				getHostname( void ) const;
+		std::string				getDate( void ) const;
 
 	private:
-		std::string				_hostname;
+		std::string				_date;
 };
 
 #endif

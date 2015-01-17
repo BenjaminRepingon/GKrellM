@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:44:37 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:34:42 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/17 18:43:10 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ Hostname::~Hostname()
 
 Hostname &				Hostname::operator=( Hostname const & lhs )
 {
-	(void)lhs;
+	this->_hostname = lhs.getHostname();
+
 	return (*this);
 }
 
@@ -61,4 +62,9 @@ void			Hostname::ncursesRender( NcursesRenderEngine & renderEngine )
 	mvprintw( 1, 3, "Hostname:" );
 	mvprintw( 3, 3, ss.str().c_str() );
 	(void)renderEngine;
+}
+
+std::string		Hostname::getHostname( void ) const
+{
+	return ( this->_hostname );
 }
