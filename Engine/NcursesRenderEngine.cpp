@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RenderEngine.cpp                                   :+:      :+:    :+:   */
+/*   NcursesRenderEngine.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "RenderEngine.hpp"
+# include "NcursesRenderEngine.hpp"
 
-RenderEngine::RenderEngine()
+NcursesRenderEngine::NcursesRenderEngine()
 {
 	initscr();
 	start_color();
@@ -37,18 +37,18 @@ RenderEngine::RenderEngine()
 	return ;
 }
 
-RenderEngine::RenderEngine( RenderEngine const & src )
+NcursesRenderEngine::NcursesRenderEngine( NcursesRenderEngine const & src )
 {
 	*this = src;
 	return ;
 }
 
-RenderEngine::~RenderEngine()
+NcursesRenderEngine::~NcursesRenderEngine()
 {
 	return ;
 }
 
-RenderEngine &	RenderEngine::operator=( RenderEngine const & rhs )
+NcursesRenderEngine &	NcursesRenderEngine::operator=( NcursesRenderEngine const & rhs )
 {
 	if ( this != &rhs )
 	{
@@ -56,17 +56,17 @@ RenderEngine &	RenderEngine::operator=( RenderEngine const & rhs )
 	return ( *this );
 }
 
-WINDOW &		RenderEngine::getWindow() const
+WINDOW &		NcursesRenderEngine::getWindow() const
 {
 	return ( *this->_window );
 }
 
-int				RenderEngine::getWidth() const
+int				NcursesRenderEngine::getWidth() const
 {
 	return ( this->_width );
 }
 
-int				RenderEngine::getHeight() const
+int				NcursesRenderEngine::getHeight() const
 {
-	return ( this->_height - 7 );
+	return ( this->_height );
 }

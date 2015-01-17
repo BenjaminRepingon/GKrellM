@@ -15,7 +15,11 @@
 # include <iostream>
 # include <unistd.h>
 # include "Program.hpp"
-# include "RenderEngine.hpp"
+# include "NcursesRenderEngine.hpp"
+# include "GraphicRenderEngine.hpp"
+
+# define NCURSES 2
+# define GRAPHIC 4
 
 class CoreEngine
 {
@@ -25,25 +29,27 @@ public:
 	CoreEngine( double framerate, Program & program );
 	virtual ~CoreEngine( void );
 
-	CoreEngine &	operator=( CoreEngine const & rhs );
+	CoreEngine &			operator=( CoreEngine const & rhs );
 
-	double			getFramerate() const;
-	Program &		getProgram() const;
-	bool			isRunning() const;
-	RenderEngine &	getRenderEngine() const;
+	double					getFramerate() const;
+	Program &				getProgram() const;
+	bool					isRunning() const;
+	NcursesRenderEngine &	getNcursesRenderEngine() const;
+	GraphicRenderEngine &	getGraphicRenderEngine() const;
 
-	bool			start();
-	bool			stop();
-	bool			createWindow();
-	static unsigned	getTime();
+	bool					start();
+	bool					stop();
+	bool					createWindow( int mode );
+	static unsigned			getTime();
 
 private:
-	int				run();
+	int						run();
 
-	double			_framerate;
-	Program *		_program;
-	bool			_isRunning;
-	RenderEngine *	_renderEngine;
+	double					_framerate;
+	Program *				_program;
+	bool					_isRunning;
+	NcursesRenderEngine *	_ncursesRenderEngine;
+	GraphicRenderEngine *	_graphicRenderEngine;
 };
 
 #endif

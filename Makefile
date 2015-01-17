@@ -20,14 +20,14 @@ SRCS			=	$(NAME).cpp							\
 					GKrellMProgram.cpp					\
 					\
 					Engine/CoreEngine.cpp				\
-					Engine/RenderEngine.cpp				\
+					Engine/NcursesRenderEngine.cpp		\
+					Engine/GraphicRenderEngine.cpp		\
 					Engine/ProgramObject.cpp			\
 					Engine/Vector2f.cpp					\
 					Engine/ProgramComponent.cpp			\
 					Engine/Input.cpp					\
 					Engine/Program.cpp					\
 					\
-					Modules/Test.cpp
 
 OBJS			=	$(SRCS:.cpp=.o)
 

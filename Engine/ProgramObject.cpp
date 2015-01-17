@@ -60,18 +60,18 @@ void			ProgramObject::init( CoreEngine & coreEngine )
 	return ;
 }
 
-void 			ProgramObject::renderAll( RenderEngine & renderEngine )
+void 			ProgramObject::ncursesRenderAll( NcursesRenderEngine & renderEngine )
 {
-	render( renderEngine );
+	ncursesRender( renderEngine );
 
 	for ( size_t i = 0; i < this->_childrens.size(); i++ )
-		this->_childrens[i]->renderAll( renderEngine );
+		this->_childrens[i]->ncursesRenderAll( renderEngine );
 }
 
-void			ProgramObject::render( RenderEngine & renderEngine )
+void			ProgramObject::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	for ( size_t i = 0; i < this->_components.size(); i++ )
-		this->_components[i]->render( renderEngine );
+		this->_components[i]->ncursesRender( renderEngine );
 }
 
 void 			ProgramObject::inputAll( float delta )

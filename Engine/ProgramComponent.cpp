@@ -35,10 +35,15 @@ void			ProgramComponent::update( float delta )
 	(void)delta;
 }
 
-void			ProgramComponent::render( RenderEngine & renderEngine )
+void			ProgramComponent::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	(void)renderEngine;
 }
+
+//void			ProgramComponent::render( RenderEngine & renderEngine )
+//{
+//	(void)renderEngine;
+//}
 
 ProgramObject &	ProgramComponent::getParent() const
 {

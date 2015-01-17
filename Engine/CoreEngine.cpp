@@ -41,14 +41,18 @@ CoreEngine &	CoreEngine::operator=( CoreEngine const & rhs )
 		this->_framerate = rhs.getFramerate();
 		this->_program = &rhs.getProgram();
 		this->_isRunning = rhs.isRunning();
-		this->_renderEngine = &rhs.getRenderEngine();
+		this->_ncursesRenderEngine = &rhs.getNcursesRenderEngine();
+//		this->_ncursesRenderEngine = &rhs.getNcursesRenderEngine();
 	}
 	return ( *this );
 }
 
-bool			CoreEngine::createWindow()
+bool			CoreEngine::createWindow( int mode )
 {
-	this->_renderEngine = new RenderEngine();
+	if ( ( mode & NCURSES ) == NCURSES )
+		this->_ncursesRenderEngine = new NcursesRenderEngine();
+	if ( ( mode & GRAPHIC ) == GRAPHIC )
+		this->_graphicRenderEngine = new GraphicRenderEngine();
 	return ( true );
 }
 
@@ -78,24 +82,24 @@ int				CoreEngine::run()
 	while ( this->_isRunning )
 	{
 		startTime = getTime();
-		if ( this->_renderEngine )
+		if ( this->_ncursesRenderEngine )
 			clear();
 		Input::update();
 		if ( Input::isKeyDown( 27 ) )
 			this->stop();
 		this->_program->input( _framerate );
 		this->_program->update( _framerate );
-		if ( this->_renderEngine )
+		if ( this->_ncursesRenderEngine )
 		{
-			this->_program->render( *this->_renderEngine );
-			wrefresh( &getRenderEngine().getWindow() );
+			this->_program->ncursesRender( *this->_ncursesRenderEngine );
+			wrefresh( &getNcursesRenderEngine().getWindow() );
 		}
 		endTime = getTime();
 		usleep( ( 1000000 / this->_framerate ) - ( endTime - startTime ) );
 	}
-	if ( this->_renderEngine )
+	if ( this->_ncursesRenderEngine )
 	{
-		delwin( &getRenderEngine().getWindow() );
+		delwin( &getNcursesRenderEngine().getWindow() );
 		endwin();
 	}
 	return (0);
@@ -121,9 +125,14 @@ Program &		CoreEngine::getProgram() const
 	return ( *this->_program );
 }
 
-RenderEngine &	CoreEngine::getRenderEngine() const
+NcursesRenderEngine &	CoreEngine::getNcursesRenderEngine() const
 {
-	return ( *this->_renderEngine );
+	return ( *this->_ncursesRenderEngine );
+}
+
+GraphicRenderEngine &	CoreEngine::getGraphicRenderEngine() const
+{
+	return ( *this->_graphicRenderEngine );
 }
 
 bool			CoreEngine::isRunning() const

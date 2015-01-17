@@ -1,6 +1,6 @@
 #ifndef PROGRAM_COMPONENT
 # define PROGRAM_COMPONENT
-# include "RenderEngine.hpp"
+# include "NcursesRenderEngine.hpp"
 
 class ProgramObject;
 
@@ -13,7 +13,8 @@ public:
 
 	virtual void			input( float delta );
 	virtual void			update( float delta );
-	virtual void			render( RenderEngine & renderEngine );
+	virtual void			ncursesRender( NcursesRenderEngine & renderEngine );
+//	virtual void			render( NcursesRenderEngine & renderEngine );
 
 	void					setParent( ProgramObject & parent );
 	ProgramObject &			getParent() const;

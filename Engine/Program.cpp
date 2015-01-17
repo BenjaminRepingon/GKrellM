@@ -50,10 +50,15 @@ void	Program::update( float delta )
 	this->getRootObject().updateAll( delta );
 }
 
-void	Program::render( RenderEngine & renderEngine )
+void	Program::ncursesRender( NcursesRenderEngine & renderEngine )
 {
-	this->getRootObject().renderAll( renderEngine );
+	this->getRootObject().ncursesRenderAll( renderEngine );
 }
+
+//void	Program::ncursesRender( NcursesRenderEngine & renderEngine )
+//{
+//	this->getRootObject().ncursesRenderAll( renderEngine );
+//}
 
 void	Program::addObject( ProgramObject & object )
 {

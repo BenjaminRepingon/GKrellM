@@ -1,6 +1,5 @@
 # include <iostream>
 # include "GKrellMProgram.hpp"
-# include "Modules/Test.hpp"
 
 GKrellMProgram::GKrellMProgram() : Program()
 {
@@ -29,10 +28,6 @@ GKrellMProgram &	GKrellMProgram::operator=( GKrellMProgram const & rhs )
 bool			GKrellMProgram::init()
 {
 	// START INIT
-
-	Test *test = new Test();
-
-	addObject( *test );
 
 	// END INIT
 	return ( true );

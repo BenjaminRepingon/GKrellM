@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RenderEngine.hpp                                   :+:      :+:    :+:   */
+/*   GraphicRenderEngine.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDER_ENGINE
-# define RENDER_ENGINE
-# include <ncurses.h>
-# define SET_COLOR(COLOR) (attron(COLOR_PAIR(COLOR)))
-# define COLOR_GRAY (COLOR_WHITE + 1)
-# define COLOR_HIGH_YELLOW (COLOR_WHITE + 2)
-class RenderEngine
+#ifndef GRAPHIC_RENDER_ENGINE
+# define GRAPHIC_RENDER_ENGINE
+# include "IRenderEngine.hpp"
+
+class GraphicRenderEngine : public IRenderEngine
 {
 public:
-	RenderEngine( void );
-	RenderEngine( RenderEngine const & src );
-	virtual ~RenderEngine( void );
+	GraphicRenderEngine( void );
+	GraphicRenderEngine( GraphicRenderEngine const & src );
+	virtual ~GraphicRenderEngine( void );
 
-	RenderEngine &	operator=( RenderEngine const & rhs );
+	GraphicRenderEngine &	operator=( GraphicRenderEngine const & rhs );
 
-	int				getWidth() const;
-	int				getHeight() const;
-
-	WINDOW &		getWindow() const;
+	virtual int				getWidth() const;
+	virtual int				getHeight() const;
 
 private:
-	WINDOW*			_window;
-	int				_width;
-	int				_height;
+	int						_width;
+	int						_height;
 };
 
 #endif
