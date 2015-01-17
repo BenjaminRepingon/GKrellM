@@ -6,12 +6,12 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 18:39:55 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:44:40 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/17 18:53:10 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef USERNAME
-#define USERNAME
+#ifndef USERNAME_HPP
+#define USERNAME_HPP
 #include "../Engine/ProgramComponent.hpp"
 #include <iostream>
 

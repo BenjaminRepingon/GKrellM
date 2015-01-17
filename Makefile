@@ -6,7 +6,7 @@
 #    By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 09:52:30 by rbenjami          #+#    #+#              #
-#    Updated: 2015/01/17 18:44:10 by dsousa           ###   ########.fr        #
+#    Updated: 2015/01/17 18:56:08 by dsousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRCS			=	$(NAME).cpp							\
 					Modules/ModuleObject.cpp			\
 					\
 					Components/Hostname.cpp				\
-					Components/Username.cpp
+					Components/Username.cpp				\
+					Components/CurrentTime.cpp
+
 
 OBJS			=	$(SRCS:.cpp=.o)
 
