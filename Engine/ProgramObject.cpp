@@ -2,8 +2,8 @@
 
 ProgramObject::ProgramObject() :
 	_pos( new Vector2f( 0, 0 ) ),
-	_nbChildrens( 0 ),
-	_nbComponents( 0 ),
+	_childrens( 0 ),
+	_components( 0 ),
 	_coreEngine( 0 )
 {
 	return ;
@@ -11,8 +11,8 @@ ProgramObject::ProgramObject() :
 
 ProgramObject::ProgramObject( ProgramObject const & src ) :
 	_pos( new Vector2f( 0, 0 ) ),
-	_nbChildrens( 0 ),
-	_nbComponents( 0 ),
+	_childrens( 0 ),
+	_components( 0 ),
 	_coreEngine( 0 )
 {
 	*this = src;
@@ -29,8 +29,8 @@ ProgramObject &	ProgramObject::operator=( ProgramObject const & rhs )
 	if ( this != &rhs )
 	{
 		this->_pos = &rhs.getPos();
-		this->_nbChildrens = rhs.getNbChildrens();
-		this->_nbComponents = rhs.getNbComponents();
+		this->_childrens = rhs.getChildrens();
+		this->_components = rhs.getComponents();
 		this->_coreEngine = &rhs.getCoreEngine();
 	}
 	return ( *this );
@@ -50,9 +50,8 @@ void			ProgramObject::removeChild( ProgramObject & child )
 
 void			ProgramObject::addComponent( ProgramComponent & component )
 {
-	this->_components[this->_nbComponents] = &component;
-	this->_components[this->_nbComponents]->setParent( *this );
-	this->_nbComponents++;
+	this->_components[this->_components.size()] = &component;
+	this->_components[this->_components.size()]->setParent( *this );
 }
 
 void			ProgramObject::init( CoreEngine & coreEngine )
@@ -65,13 +64,13 @@ void 			ProgramObject::renderAll( RenderEngine & renderEngine )
 {
 	render( renderEngine );
 
-	for ( int i = 0; i < this->_nbChildrens; i++ )
+	for ( size_t i = 0; i < this->_childrens.size(); i++ )
 		this->_childrens[i]->renderAll( renderEngine );
 }
 
 void			ProgramObject::render( RenderEngine & renderEngine )
 {
-	for ( int i = 0; i < this->_nbComponents; i++ )
+	for ( size_t i = 0; i < this->_components.size(); i++ )
 		this->_components[i]->render( renderEngine );
 }
 
@@ -79,13 +78,13 @@ void 			ProgramObject::inputAll( float delta )
 {
 	input( delta );
 
-	for ( int i = 0; i < this->_nbChildrens; i++ )
+	for ( size_t i = 0; i < this->_childrens.size(); i++ )
 		this->_childrens[i]->inputAll( delta );
 }
 
 void			ProgramObject::input( float delta )
 {
-	for ( int i = 0; i < this->_nbComponents; i++ )
+	for ( size_t i = 0; i < this->_components.size(); i++ )
 		this->_components[i]->input( delta );
 }
 
@@ -93,14 +92,13 @@ void 			ProgramObject::updateAll( float delta )
 {
 	update( delta );
 
-	for ( int i = 0; i < this->_nbChildrens; i++ )
+	for ( size_t i = 0; i < this->_childrens.size(); i++ )
 		this->_childrens[i]->updateAll( delta );
 }
 
 void			ProgramObject::update( float delta )
 {
-	std::cout << "pok" << std::endl;
-	for ( int i = 0; i < this->_nbComponents; i++ )
+	for ( size_t i = 0; i < this->_components.size(); i++ )
 		this->_components[i]->update( delta );
 }
 
@@ -109,7 +107,7 @@ void			ProgramObject::setCoreEngine( CoreEngine & engine )
 	if ( this->_coreEngine != &engine )
 	{
 		this->_coreEngine = &engine;
-		for ( int i = 0; i < this->_nbChildrens; i++ )
+		for ( size_t i = 0; i < this->_childrens.size(); i++ )
 			this->_childrens[i]->setCoreEngine( engine );
 	}
 }
@@ -131,17 +129,17 @@ ProgramObject &		ProgramObject::getParent() const
 	return ( *this->_parent );
 }
 
-int					ProgramObject::getNbChildrens() const
-{
-	return ( this->_childrens.size() );
-}
-
-int					ProgramObject::getNbComponents() const
-{
-	return ( this->_nbComponents );
-}
-
 CoreEngine &		ProgramObject::getCoreEngine() const
 {
 	return ( *this->_coreEngine );
+}
+
+std::vector<ProgramObject *>	ProgramObject::getChildrens( void ) const
+{
+	return ( this->_childrens );
+}
+
+std::vector<ProgramComponent *>	ProgramObject::getComponents( void ) const
+{
+	return ( this->_components );
 }

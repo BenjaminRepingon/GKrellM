@@ -30,21 +30,17 @@ public:
 	virtual void					update( float delta );
 	virtual void					init( CoreEngine & coreEngine );
 
-	ProgramObject * const *			getChildrens() const;
-	int								getNbChildrens() const;
-	int								getNbOfAllChildrens() const;
-	int								getNbComponents() const;
+	std::vector<ProgramObject *>	getChildrens( void ) const;
+	std::vector<ProgramComponent *>	getComponents( void ) const;
 	CoreEngine &					getCoreEngine() const;
-	ProgramObject &					getParent() const;
+	ProgramObject &					getParent( void ) const;
 	void							setPos( Vector2f & value );
 	void							setCoreEngine( CoreEngine & engine );
 
 protected:
 	Vector2f *						_pos;
 	std::vector<ProgramObject *>	_childrens;
-	int								_nbChildrens;
 	std::vector<ProgramComponent *>	_components;
-	int								_nbComponents;
 	CoreEngine *					_coreEngine;
 
 private:
