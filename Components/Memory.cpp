@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 20:29:32 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 22:12:48 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 09:59:07 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,13 @@ void			Memory::update( float delta )
 }
 void			Memory::ncursesRender( NcursesRenderEngine & renderEngine )
 {
-	// struct utsname info;
-	// if(uname(&info) != -1)
-	// 	this->_memoryInfo = info.nodename;
-
-	// std::stringstream ss;
-	// ss << this->_memoryInfo;
+	std::stringstream ss;
+	ss << this->_memoryInfo;
 
 	// GeometricDrawer::drawRectangleBorder( Vector2f( 0, 0 ), 20, 5 );
 
-	// mvprintw( 1, 6, "Memory:" );
-	// mvprintw( 10, 6, ss.str().c_str() );
+	mvprintw( 1, 6, "Memory:" );
+	mvprintw( 10, 6, ss.str().c_str() );
 	(void)renderEngine;
 }
 

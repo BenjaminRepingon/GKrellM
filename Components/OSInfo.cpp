@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 19:19:04 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 19:26:26 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 09:58:00 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void			OSInfo::ncursesRender( NcursesRenderEngine & renderEngine )
 	std::stringstream ss;
 	ss << this->_OSInfo;
 
-	GeometricDrawer::drawRectangleBorder( Vector2f( 0, 0 ), 20, 5 );
+	// GeometricDrawer::drawRectangleBorder( Vector2f( 0, 0 ), 20, 5 );
 
 	mvprintw( 1, 4, "OSInfo:" );
 	mvprintw( 8, 4, ss.str().c_str() );
