@@ -16,6 +16,8 @@ public:
 	virtual void			update( float delta );
 	virtual void			ncursesRender( NcursesRenderEngine & renderEngine );
 	virtual void			graphicRender( GraphicRenderEngine & renderEngine );
+	virtual void			drawRectangleBorder();
+	virtual void			drawString( Vector2f const & pos, std::string const & str );
 
 	void					setParent( ProgramObject & parent );
 	ProgramObject &			getParent() const;

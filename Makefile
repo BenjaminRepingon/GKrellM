@@ -6,7 +6,7 @@
 #    By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 09:52:30 by rbenjami          #+#    #+#              #
-#    Updated: 2015/01/18 11:04:29 by dsousa           ###   ########.fr        #
+#    Updated: 2015/01/18 17:16:39 by dsousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ SRCS			=	$(NAME).cpp							\
 					Engine/ProgramComponent.cpp			\
 					Engine/Input.cpp					\
 					Engine/Program.cpp					\
-					Engine/GeometricDrawer.cpp			\
 					\
 					Modules/ModuleObject.cpp			\
 					\
@@ -39,23 +38,32 @@ SRCS			=	$(NAME).cpp							\
 					Components/Cpu.cpp
 
 
- OBJS			=	$(SRCS:.cpp=.o)
+OBJS			=	$(SRCS:.cpp=.o)
 
-INCLUDES		=	-lncurses -lSDL2 -L./sdl2/2.0.3/lib/ -I./sdl2/2.0.3/include/SDL2/
+INCLUDES		=
+
+LIBS			=	-lncurses
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
-	$(CC) -o $(NAME) $(OBJS) $(INCLUDES)
+$(NAME):		generate $(OBJS)
+	@printf "Compiling objects"
+	@$(CC) -o $(NAME) $(OBJS) $(LIBS)
+
+generate:
+	@printf "Generate objects: \n"
 
 %.o:			%.cpp
-	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
+	@echo $@
 
 clean:
-	rm -rf $(OBJS)
+	@printf "Remove objects\n"
+	@rm -rf $(OBJS)
 
 fclean:			clean
-	rm -rf $(NAME)
+	@printf "Remove binary\n"
+	@rm -rf $(NAME)
 
 re:				fclean all
 

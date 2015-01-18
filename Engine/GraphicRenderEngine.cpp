@@ -6,14 +6,13 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 12:21:02 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/01/11 22:15:39 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 12:35:05 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "GraphicRenderEngine.hpp"
 
-GraphicRenderEngine::GraphicRenderEngine() :
-	_isInit( false)
+GraphicRenderEngine::GraphicRenderEngine()
 {
 	return ;
 }
@@ -39,31 +38,22 @@ GraphicRenderEngine &	GraphicRenderEngine::operator=( GraphicRenderEngine const 
 
 void			GraphicRenderEngine::init()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0 )
-	{
-		fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
-	}
 
-	/* Création de la fenêtre */
-	SDL_Window* pWindow = NULL;
-	pWindow = SDL_CreateWindow("Ma première application SDL2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
-
-	if( pWindow )
-	{
-		SDL_Delay(3000); /* Attendre trois secondes, que l'utilisateur voit la fenêtre */
-
-		SDL_DestroyWindow(pWindow);
-	}
-	else
-	{
-		fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());
-	}
-	this->_isInit = true;
 }
 
-bool			GraphicRenderEngine::isInit()
+void			GraphicRenderEngine::destroy()
 {
-	return ( this->_isInit );
+
+}
+
+void *			GraphicRenderEngine::getWindow() const
+{
+	return ( this->_window );
+}
+
+void *			GraphicRenderEngine::getMlx() const
+{
+	return ( this->_mlx );
 }
 
 int				GraphicRenderEngine::getWidth() const

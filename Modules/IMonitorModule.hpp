@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IMonitorModule.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:14:18 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 16:31:36 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 14:44:06 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ class IMonitorModule
 	public:
 		virtual ~IMonitorModule( void ) {};
 		virtual std::string const &		getTitle( void ) const = 0;
-		virtual int						getWidth( void ) const = 0;
-		virtual int						getHeight( void ) const = 0;
 
 	private:
 

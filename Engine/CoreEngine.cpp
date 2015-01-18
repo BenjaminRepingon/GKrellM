@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 10:59:24 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/01/11 20:22:35 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 15:57:36 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 CoreEngine::CoreEngine( double framerate, Program & game ) :
 	_framerate( framerate ),
 	_program( &game ),
-	_isRunning( false )
+	_isRunning( false ),
+	_ncursesRenderEngine( 0 ),
+	_graphicRenderEngine( 0 )
 {
 	game.setEngine( *this );
 	return ;
@@ -42,22 +44,31 @@ CoreEngine &	CoreEngine::operator=( CoreEngine const & rhs )
 		this->_program = &rhs.getProgram();
 		this->_isRunning = rhs.isRunning();
 		this->_ncursesRenderEngine = &rhs.getNcursesRenderEngine();
-//		this->_ncursesRenderEngine = &rhs.getNcursesRenderEngine();
+		this->_graphicRenderEngine = &rhs.getGraphicRenderEngine();
 	}
 	return ( *this );
 }
 
 bool			CoreEngine::createWindow( int mode )
 {
+	// if ( ( mode & GRAPHIC ) == GRAPHIC )
+	// {
+	// 	this->_graphicRenderEngine = new GraphicRenderEngine();
+	// 	this->_graphicRenderEngine->init();
+	// }
 	if ( ( mode & GRAPHIC ) == GRAPHIC )
-	{
-		this->_graphicRenderEngine = new GraphicRenderEngine();
-		this->_graphicRenderEngine->init();
-	}
-	if ( ( mode & NCURSES ) == NCURSES )
 	{
 		this->_ncursesRenderEngine = new NcursesRenderEngine();
 		this->_ncursesRenderEngine->init();
+		this->_ncursesRenderEngine->setMode( GRAPHIC );
+		SET_COLOR( COLOR_1 );
+	}
+	else if ( ( mode & NCURSES ) == NCURSES )
+	{
+		this->_ncursesRenderEngine = new NcursesRenderEngine();
+		this->_ncursesRenderEngine->init();
+		this->_ncursesRenderEngine->setMode( NCURSES );
+		SET_COLOR( COLOR_2 );
 	}
 	return ( true );
 }
@@ -88,23 +99,31 @@ int				CoreEngine::run()
 	while ( this->_isRunning )
 	{
 		startTime = getTime();
-		if ( this->_ncursesRenderEngine && this->_ncursesRenderEngine->isInit() )
+		if ( this->_ncursesRenderEngine )
 			clear();
 		Input::update();
 		if ( Input::isKeyDown( 27 ) )
 			this->stop();
+		if ( this->_graphicRenderEngine )
+		{
+
+		}
 		this->_program->input( _framerate );
 		this->_program->update( _framerate );
 
 		// GRAPHIC
-		if ( this->_graphicRenderEngine && this->_graphicRenderEngine->isInit() )
+		if ( this->_graphicRenderEngine )
 		{
 			this->_program->graphicRender( *this->_graphicRenderEngine );
 		}
 
 		// NCURSES
-		if ( this->_ncursesRenderEngine && this->_ncursesRenderEngine->isInit() )
+		if ( this->_ncursesRenderEngine )
 		{
+			if ( this->_ncursesRenderEngine->getMode() == GRAPHIC )
+				mvprintw( 0, this->_ncursesRenderEngine->getWidth() / 2 - 16, "-- Beautiful graphics mode ;) --");
+			else
+				mvprintw( 0, this->_ncursesRenderEngine->getWidth() / 2 - 13, "-- Simple ncurses mode --");
 			this->_program->ncursesRender( *this->_ncursesRenderEngine );
 			wrefresh( &getNcursesRenderEngine().getWindow() );
 		}
@@ -112,12 +131,10 @@ int				CoreEngine::run()
 		endTime = getTime();
 		usleep( ( 1000000 / this->_framerate ) - ( endTime - startTime ) );
 	}
-	if ( this->_ncursesRenderEngine && this->_ncursesRenderEngine->isInit() )
-	{
-		delwin( &getNcursesRenderEngine().getWindow() );
-		endwin();
-	}
-	SDL_Quit();
+	if ( this->_ncursesRenderEngine )
+		this->_ncursesRenderEngine->destroy();
+	if ( this->_graphicRenderEngine )
+		this->_graphicRenderEngine->destroy();
 	return (0);
 }
 

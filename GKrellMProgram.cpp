@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 11:01:32 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 17:17:31 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,26 @@ bool			GKrellMProgram::init()
 {
 	// START INIT
 
-	ModuleObject *hostnameModule = new ModuleObject( "Hostname" );
+	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 0, 2 ), Vector2f( 25, 7 ) );
 	hostnameModule->addComponent( new Hostname() );
-	hostnameModule->addComponent( new Username() );
-	hostnameModule->addComponent( new OSInfo() );
-	hostnameModule->addComponent( new CurrentTime() );
-	hostnameModule->addComponent( new Memory() );
-	hostnameModule->addComponent( new Cpu() );
+
+	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 25, 2 ), Vector2f( 25, 7 ) );
+	userNameModule->addComponent( new Username() );
+
+	ModuleObject *OSInfoModule = new ModuleObject( "OSInfo", Vector2f( 50, 2 ), Vector2f( 25, 7 ) );
+	OSInfoModule->addComponent( new OSInfo() );
+
+	ModuleObject *currentTimeModule = new ModuleObject( "CurrentTime", Vector2f( 75, 2 ), Vector2f( 25, 7 ) );
+	currentTimeModule->addComponent( new CurrentTime() );
+
+	ModuleObject *memoryModule = new ModuleObject( "Memory", Vector2f( 100, 2 ), Vector2f( 25, 7 ) );
+	memoryModule->addComponent( new Memory() );
 
 	addObject( hostnameModule );
+	addObject( userNameModule );
+	addObject( OSInfoModule );
+	addObject( currentTimeModule );
+	addObject( memoryModule );
 
 	// END INIT
 	return ( true );

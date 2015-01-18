@@ -6,14 +6,13 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 12:21:02 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/01/11 22:15:39 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 15:58:40 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "NcursesRenderEngine.hpp"
 
-NcursesRenderEngine::NcursesRenderEngine() :
-	_isInit( false)
+NcursesRenderEngine::NcursesRenderEngine()
 {
 	return ;
 }
@@ -59,12 +58,15 @@ void			NcursesRenderEngine::init( void )
 	init_pair( COLOR_GRAY, COLOR_GRAY, COLOR_BLACK );
 	init_color( COLOR_HIGH_YELLOW, 800, 800, 400);
 	init_pair( COLOR_HIGH_YELLOW, COLOR_GRAY, COLOR_BLACK );
-	this->_isInit = true;
+
+	init_pair( COLOR_1, COLOR_CYAN, COLOR_BLACK );
+	init_pair( COLOR_2, COLOR_WHITE, COLOR_BLACK );
 }
 
-bool			NcursesRenderEngine::isInit()
+void			NcursesRenderEngine::destroy()
 {
-	return ( this->_isInit );
+	delwin( this->_window );
+	endwin();
 }
 
 WINDOW &		NcursesRenderEngine::getWindow() const
@@ -81,3 +83,15 @@ int				NcursesRenderEngine::getHeight() const
 {
 	return ( this->_height );
 }
+
+int				NcursesRenderEngine::getMode( void )
+{
+	return this->_mode;
+}
+
+void			NcursesRenderEngine::setMode( int mode )
+{
+	this->_mode = mode;
+	return ;
+}
+

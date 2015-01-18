@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Hostname.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 16:44:37 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:43:10 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 15:20:00 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # include <iostream>
 # include <sys/utsname.h>
 # include <sstream>
-# include "../Engine/GeometricDrawer.hpp"
+# include "../Engine/ProgramObject.hpp"
 
 Hostname::Hostname() : ProgramComponent()
 {
@@ -46,22 +46,19 @@ void			Hostname::input( float delta )
 
 void			Hostname::update( float delta )
 {
+	struct utsname	info;
+
+	if ( uname( &info ) != -1 )
+		this->_hostname = info.nodename;
 	(void)delta;
 }
+
 void			Hostname::ncursesRender( NcursesRenderEngine & renderEngine )
 {
-	struct utsname info;
-	if(uname(&info) != -1)
-		this->_hostname = info.nodename;
-
-	std::stringstream ss;
-	ss << this->_hostname;
-
-	GeometricDrawer::drawRectangleBorder( Vector2f( 0, 0 ), 20, 5 );
-
-	mvprintw( 1, 3, "Hostname:" );
-	mvprintw( 3, 3, ss.str().c_str() );
 	(void)renderEngine;
+	drawRectangleBorder();
+	drawString( Vector2f( 5, 1), "Hostname:" );
+	drawString( Vector2f( 3, 3 ), this->_hostname );
 }
 
 std::string		Hostname::getHostname( void ) const

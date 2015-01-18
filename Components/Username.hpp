@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Username.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 18:39:55 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:53:10 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 14:16:28 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Username : public ProgramComponent
 		virtual void			input( float delta );
 		virtual void			update( float delta );
 		virtual void			graphicRender( GraphicRenderEngine & renderEngine );
-
+		virtual void			ncursesRender( NcursesRenderEngine & renderEngine );
 		std::string				getUsername( void ) const;
 
 	private:

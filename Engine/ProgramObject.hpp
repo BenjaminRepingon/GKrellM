@@ -13,12 +13,13 @@ class ProgramObject
 {
 public:
 	ProgramObject( void );
+	ProgramObject( Vector2f pos );
+	ProgramObject( Vector2f pos, Vector2f widthHeight );
 	ProgramObject( ProgramObject const & src );
 	virtual ~ProgramObject( void );
 
 	ProgramObject &					operator=( ProgramObject const & rhs );
 
-	Vector2f &						getPos() const;
 
 	virtual void					addChild( ProgramObject * child );
 	virtual void					removeChild( ProgramObject * child );
@@ -37,12 +38,16 @@ public:
 	std::vector<ProgramComponent *>	getComponents( void ) const;
 	CoreEngine &					getCoreEngine() const;
 	ProgramObject &					getParent( void ) const;
+	Vector2f						getPos( void ) const;
+	int								getWidth( void ) const;
+	int								getHeight( void ) const;
 	void							setParent( ProgramObject * value );
 	void							setPos( Vector2f & value );
 	void							setCoreEngine( CoreEngine & engine );
 
 protected:
-	Vector2f *						_pos;
+	Vector2f						_pos;
+	Vector2f						_widthHeight;
 	std::vector<ProgramObject *>	_childrens;
 	std::vector<ProgramComponent *>	_components;
 	CoreEngine *					_coreEngine;
