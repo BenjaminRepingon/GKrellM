@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 20:29:32 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 09:59:07 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 10:51:47 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,21 @@ void			Memory::update( float delta )
 	// sysctl(mib, 2, &total_memory, &len, NULL, 0);
 
 	// std::cout << ((total_memory / 1024) / 1024) << std::endl;
+
+	long long unsigned int rm;
+	int mib[]={CTL_HW,HW_MEMSIZE};
+	size_t len;
+	uint64_t m2;
+
+	len = sizeof(m2);
+	if(sysctl(mib, 2, &m2, &len, NULL,0) == 0)
+		rm = m2;
+	else
+		rm = 0.0;
+
+	ss << "Total memory: " << static_cast<float>( ( rm / 1024 ) / 1024 ) << "Mo   --------   ";
+
+	printf("DEBUG: sys 64 bits %lld %llx \n",rm, m2);
 
 	mach_port = mach_host_self();
 	count = sizeof(vm_stats) / sizeof(natural_t);
