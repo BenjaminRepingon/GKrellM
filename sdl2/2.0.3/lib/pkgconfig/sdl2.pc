@@ -1,6 +1,6 @@
 # sdl pkg-config source file
 
-prefix=/Volumes/Data/nfs/zfs-student-3/users/2013_paris/rbenjami/.brew
+prefix=/nfs/zfs-student-3/users/2013_paris/rbenjami/.brew
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
