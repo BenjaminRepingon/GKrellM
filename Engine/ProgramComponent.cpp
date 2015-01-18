@@ -1,5 +1,7 @@
 # include "ProgramComponent.hpp"
 # include "../Engine/ProgramObject.hpp"
+# include "../Engine/CoreEngine.hpp"
+# include <stdlib.h>
 
 ProgramComponent::ProgramComponent()
 {
@@ -58,15 +60,41 @@ void			ProgramComponent::setParent( ProgramObject & parent )
 
 void			ProgramComponent::drawRectangleBorder()
 {
-	Vector2f	pos = this->getParent().getPos();
-	int			width = this->getParent().getWidth();
-	int			height = this->getParent().getHeight();
-	for ( int i = pos.getX(); i < width + pos.getX(); ++i )
+	if ( getParent().getCoreEngine().getNcursesRenderEngine().getMode() == NCURSES )
 	{
-		for ( int j = pos.getY(); j < height + pos.getY(); ++j )
+		Vector2f	pos = this->getParent().getPos();
+		int			width = this->getParent().getWidth();
+		int			height = this->getParent().getHeight();
+		for ( int i = pos.getX(); i < width + pos.getX(); ++i )
 		{
-			if ( i == pos.getX() || j == pos.getY() || i == width + pos.getX() - 1 || j == height + pos.getY() - 1 )
-				mvprintw( j, i, "+" );
+			for ( int j = pos.getY(); j < height + pos.getY(); ++j )
+			{
+				if ( i == pos.getX() || j == pos.getY() || i == width + pos.getX() - 1 || j == height + pos.getY() - 1 )
+				{
+					mvprintw( j, i, "+" );
+				}
+			}
+		}
+	}
+	else
+	{
+		std::string	str = std::string( 1, '\0' );
+		static const char alphanum[] = "+-*/=';/.,<>)(*&^%$|\\~`#@!=:";
+
+		Vector2f	pos = this->getParent().getPos();
+		int			width = this->getParent().getWidth();
+		int			height = this->getParent().getHeight();
+		for ( int i = pos.getX(); i < width + pos.getX(); ++i )
+		{
+			for ( int j = pos.getY(); j < height + pos.getY(); ++j )
+			{
+				if ( i == pos.getX() || j == pos.getY() || i == width + pos.getX() - 1 || j == height + pos.getY() - 1 )
+				{
+					str[0] = alphanum[rand() % ( sizeof( alphanum ) - 1 )];
+					SET_COLOR( rand() % 10 );
+					mvprintw( j, i, str.c_str() );
+				}
+			}
 		}
 	}
 }
