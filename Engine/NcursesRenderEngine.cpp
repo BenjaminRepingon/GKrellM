@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 12:21:02 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/01/18 15:58:40 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 18:05:14 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			NcursesRenderEngine::init( void )
 	init_color( COLOR_HIGH_YELLOW, 800, 800, 400);
 	init_pair( COLOR_HIGH_YELLOW, COLOR_GRAY, COLOR_BLACK );
 
-	init_pair( COLOR_1, COLOR_CYAN, COLOR_BLACK );
+	init_pair( COLOR_1, COLOR_MAGENTA, COLOR_BLACK );
 	init_pair( COLOR_2, COLOR_WHITE, COLOR_BLACK );
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GKrellMProgram.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 17:28:32 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 18:11:45 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ bool			GKrellMProgram::init()
 {
 	// START INIT
 
-	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 0, 2 ), Vector2f( 25, 7 ) );
+	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 3, 2 ), Vector2f( 25, 7 ) );
 	hostnameModule->addComponent( new Hostname() );
 
-	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 25, 2 ), Vector2f( 25, 7 ) );
+	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 32, 12 ), Vector2f( 25, 7 ) );
 	userNameModule->addComponent( new Username() );
 
-	ModuleObject *OSInfoModule = new ModuleObject( "OSInfo", Vector2f( 50, 2 ), Vector2f( 25, 7 ) );
+	ModuleObject *OSInfoModule = new ModuleObject( "OSInfo", Vector2f( 4, 16 ), Vector2f( 25, 7 ) );
 	OSInfoModule->addComponent( new OSInfo() );
 
-	ModuleObject *currentTimeModule = new ModuleObject( "CurrentTime", Vector2f( 75, 2 ), Vector2f( 25, 7 ) );
+	ModuleObject *currentTimeModule = new ModuleObject( "CurrentTime", Vector2f( 57, 20 ), Vector2f( 25, 7 ) );
 	currentTimeModule->addComponent( new CurrentTime() );
 
-	ModuleObject *memoryModule = new ModuleObject( "Memory", Vector2f( 100, 2 ), Vector2f( 25, 7 ) );
+	ModuleObject *memoryModule = new ModuleObject( "Memory", Vector2f( 98, 18 ), Vector2f( 25, 7 ) );
 	memoryModule->addComponent( new Memory() );
 
-	ModuleObject *cpuModule = new ModuleObject( "CPU", Vector2f( 0, 9 ), Vector2f( 75, 7 ) );
+	ModuleObject *cpuModule = new ModuleObject( "CPU", Vector2f( 56, 5 ), Vector2f( 75, 7 ) );
 	cpuModule->addComponent( new Cpu() );
 
 	addObject( hostnameModule );
