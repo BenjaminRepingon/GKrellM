@@ -61,6 +61,7 @@ ProgramObject &	ProgramObject::operator=( ProgramObject const & rhs )
 void			ProgramObject::addChild( ProgramObject * child )
 {
 	child->setParent( this );
+	child->setCoreEngine( *this->_coreEngine );
 	this->_childrens.push_back( child );
 }
 
