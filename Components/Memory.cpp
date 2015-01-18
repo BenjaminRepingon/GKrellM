@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 20:29:32 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 10:51:47 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 11:10:23 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,12 @@
 # include <iostream>
 # include <sstream>
 # include "../Engine/GeometricDrawer.hpp"
-# include <sys/types.h>
 # include <mach/vm_statistics.h>
 # include <mach/mach_types.h>
 # include <mach/mach_init.h>
 # include <mach/mach_host.h>
-#include <stdio.h>
-#include <iostream>
-#include <sys/wait.h>
-#include <sys/param.h>
-#include <sys/sysctl.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <mach/vm_statistics.h>
-#include <mach/mach_types.h>
-#include <mach/mach_init.h>
-#include <mach/mach_host.h>
+# include <sys/sysctl.h>
+# include <sys/types.h>
 
 Memory::Memory() : ProgramComponent()
 {
@@ -67,17 +57,10 @@ void			Memory::update( float delta )
 	mach_port_t					mach_port;
 	mach_msg_type_number_t		count;
 	vm_statistics64_data_t		vm_stats;
-	// int							total_memory;
-	// int mib[2];
 
-	// mib[0] = CTL_HW;
-	// mib[1] = HW_MEMSIZE;
-
-	// size_t len = sizeof( int );
-	// sysctl(mib, 2, &total_memory, &len, NULL, 0);
-
-	// std::cout << ((total_memory / 1024) / 1024) << std::endl;
-
+	/*
+	** TOTAL Memory
+	*/
 	long long unsigned int rm;
 	int mib[]={CTL_HW,HW_MEMSIZE};
 	size_t len;
@@ -91,7 +74,9 @@ void			Memory::update( float delta )
 
 	ss << "Total memory: " << static_cast<float>( ( rm / 1024 ) / 1024 ) << "Mo   --------   ";
 
-	printf("DEBUG: sys 64 bits %lld %llx \n",rm, m2);
+	/*
+	** FREE & USED Memory
+	*/
 
 	mach_port = mach_host_self();
 	count = sizeof(vm_stats) / sizeof(natural_t);
@@ -105,7 +90,8 @@ void			Memory::update( float delta )
 		ss <<  "Free memory: " << static_cast<float>((free_memory / 1024.0 / 1024.0)) << "Mo   --------   " << " Used Memory: " << static_cast<float>((used_memory / 1024.0) / 1024.0) << "Mo";
 		this->_memoryInfo = ss.str();
 	}
-	std::cout << this->_memoryInfo << std::endl;
+
+	// std::cout << this->_memoryInfo << std::endl;
 	(void)delta;
 }
 void			Memory::ncursesRender( NcursesRenderEngine & renderEngine )

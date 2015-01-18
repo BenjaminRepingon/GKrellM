@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+         #
+#    By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 09:52:30 by rbenjami          #+#    #+#              #
-#    Updated: 2015/01/18 10:14:38 by rbenjami         ###   ########.fr        #
+#    Updated: 2015/01/18 11:04:29 by dsousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRCS			=	$(NAME).cpp							\
 					Components/Username.cpp				\
 					Components/CurrentTime.cpp			\
 					Components/Memory.cpp				\
-					Components/OSInfo.cpp
+					Components/OSInfo.cpp				\
+					Components/Cpu.cpp
 
 
  OBJS			=	$(SRCS:.cpp=.o)
