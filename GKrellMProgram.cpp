@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 15:47:40 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 16:14:59 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,26 @@ bool			GKrellMProgram::init()
 {
 	// START INIT
 
-	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 0, 2 ), Vector2f( 20, 5 ) );
+	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 0, 2 ), Vector2f( 25, 7 ) );
 	hostnameModule->addComponent( new Hostname() );
 
-	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 20, 2 ), Vector2f( 20, 5 ) );
+	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 25, 2 ), Vector2f( 25, 7 ) );
 	userNameModule->addComponent( new Username() );
 
-	// ModuleObject *OSInfoModule = new ModuleObject( "OSInfo" );
-	// OSInfoModule->addComponent( new OSInfo() );
+	ModuleObject *OSInfoModule = new ModuleObject( "OSInfo", Vector2f( 50, 2 ), Vector2f( 25, 7 ) );
+	OSInfoModule->addComponent( new OSInfo() );
 
-	// ModuleObject *currentTimeModule = new ModuleObject( "CurrentTime" );
-	// currentTimeModule->addComponent( new CurrentTime() );
+	ModuleObject *currentTimeModule = new ModuleObject( "CurrentTime", Vector2f( 75, 2 ), Vector2f( 25, 7 ) );
+	currentTimeModule->addComponent( new CurrentTime() );
 
-	// ModuleObject *memoryModule = new ModuleObject( "Memory" );
-	// memoryModule->addComponent( new Memory() );
+	ModuleObject *memoryModule = new ModuleObject( "Memory", Vector2f( 100, 2 ), Vector2f( 25, 7 ) );
+	memoryModule->addComponent( new Memory() );
 
 	addObject( hostnameModule );
 	addObject( userNameModule );
-	// addObject( OSInfoModule );
-	// addObject( currentTimeModule );
-	// addObject( memoryModule );
+	addObject( OSInfoModule );
+	addObject( currentTimeModule );
+	addObject( memoryModule );
 
 	// END INIT
 	return ( true );

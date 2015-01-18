@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Memory.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 20:29:32 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 10:51:47 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 16:22:22 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ Memory::~Memory()
 
 Memory &				Memory::operator=( Memory const & lhs )
 {
-	this->_memoryInfo = lhs.getMemoryInfo();
-
+	(void)lhs;
 	return (*this);
 }
 
@@ -89,9 +88,10 @@ void			Memory::update( float delta )
 	else
 		rm = 0.0;
 
-	ss << "Total memory: " << static_cast<float>( ( rm / 1024 ) / 1024 ) << "Mo   --------   ";
+	ss << "Total memory: " << static_cast<float>( ( rm / 1024 ) / 1024 ) << "Mo";
 
-	printf("DEBUG: sys 64 bits %lld %llx \n",rm, m2);
+	this->_memoryInfoTotal = ss.str();
+	ss.str("");
 
 	mach_port = mach_host_self();
 	count = sizeof(vm_stats) / sizeof(natural_t);
@@ -102,25 +102,24 @@ void			Memory::update( float delta )
 		long long free_memory = static_cast<int64_t>( vm_stats.free_count ) * static_cast<int64_t>( page_size );
 
 		long long used_memory = ( static_cast<int64_t>( vm_stats.active_count ) + static_cast<int64_t>( vm_stats.inactive_count ) + static_cast<int64_t>( vm_stats.wire_count ) ) * static_cast<int64_t>( page_size );
-		ss <<  "Free memory: " << static_cast<float>((free_memory / 1024.0 / 1024.0)) << "Mo   --------   " << " Used Memory: " << static_cast<float>((used_memory / 1024.0) / 1024.0) << "Mo";
-		this->_memoryInfo = ss.str();
+		ss << "Free memory: " << static_cast<float>((free_memory / 1024.0 / 1024.0)) << "Mo";
+
+		this->_memoryInfoFree = ss.str();
+		ss.str("");
+
+		ss << "Used Memory: " << static_cast<float>((used_memory / 1024.0) / 1024.0) << "Mo";
+
+		this->_memoryInfoUsed = ss.str();
+		ss.str("");
 	}
-	std::cout << this->_memoryInfo << std::endl;
 	(void)delta;
 }
 void			Memory::ncursesRender( NcursesRenderEngine & renderEngine )
 {
-	std::stringstream ss;
-	ss << this->_memoryInfo;
-
-	// GeometricDrawer::drawRectangleBorder( Vector2f( 0, 0 ), 20, 5 );
-
-	mvprintw( 1, 6, "Memory:" );
-	mvprintw( 10, 6, ss.str().c_str() );
 	(void)renderEngine;
-}
-
-std::string		Memory::getMemoryInfo( void ) const
-{
-	return ( this->_memoryInfo );
+	drawRectangleBorder();
+	drawString( Vector2f( 5, 1), "Memory:" );
+	drawString( Vector2f( 1, 3 ), this->_memoryInfoTotal );
+	drawString( Vector2f( 1, 4 ), this->_memoryInfoFree );
+	drawString( Vector2f( 1, 5 ), this->_memoryInfoUsed );
 }

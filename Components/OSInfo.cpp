@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   OSInfo.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 19:19:04 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 09:58:00 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 16:10:51 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,15 @@ void			OSInfo::update( float delta )
 		this->_OSInfo = info.sysname;
 		this->_OSInfo += " - ";
 		this->_OSInfo += info.release;
-		this->_OSInfo += " - ";
-		this->_OSInfo += info.version;
 	}
 	(void)delta;
 }
 
 void			OSInfo::ncursesRender( NcursesRenderEngine & renderEngine )
 {
-	std::stringstream ss;
-	ss << this->_OSInfo;
-
-	// GeometricDrawer::drawRectangleBorder( Vector2f( 0, 0 ), 20, 5 );
-
-	mvprintw( 1, 4, "OSInfo:" );
-	mvprintw( 8, 4, ss.str().c_str() );
+	drawRectangleBorder();
+	drawString( Vector2f( 5, 1), "OSInfo:" );
+	drawString( Vector2f( 3, 3 ), this->_OSInfo );
 	(void)renderEngine;
 }
 
