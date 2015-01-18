@@ -6,7 +6,7 @@
 #    By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 09:52:30 by rbenjami          #+#    #+#              #
-#    Updated: 2015/01/18 09:54:01 by rbenjami         ###   ########.fr        #
+#    Updated: 2015/01/18 10:08:53 by rbenjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRCS			=	$(NAME).cpp							\
 					Components/OSInfo.cpp
 
 
-OBJS			=	$(SRCS:.cpp=.o)
+ OBJS			=	$(SRCS:.cpp=.o)
 
 INCLUDES		=	-lncurses -lSDL2 -L./sdl2/2.0.3/lib/ -I./sdl2/2.0.3/include/SDL2/
 
