@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 14:57:59 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 15:47:40 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ bool			GKrellMProgram::init()
 {
 	// START INIT
 
-	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 0, 0 ), Vector2f( 20, 5 ) );
+	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 0, 2 ), Vector2f( 20, 5 ) );
 	hostnameModule->addComponent( new Hostname() );
 
-	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 20, 0 ), Vector2f( 20, 5 ) );
+	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 20, 2 ), Vector2f( 20, 5 ) );
 	userNameModule->addComponent( new Username() );
 
 	// ModuleObject *OSInfoModule = new ModuleObject( "OSInfo" );

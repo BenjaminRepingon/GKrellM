@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 10:59:24 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/01/18 11:48:22 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 15:57:36 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,24 @@ CoreEngine &	CoreEngine::operator=( CoreEngine const & rhs )
 
 bool			CoreEngine::createWindow( int mode )
 {
+	// if ( ( mode & GRAPHIC ) == GRAPHIC )
+	// {
+	// 	this->_graphicRenderEngine = new GraphicRenderEngine();
+	// 	this->_graphicRenderEngine->init();
+	// }
 	if ( ( mode & GRAPHIC ) == GRAPHIC )
-	{
-		this->_graphicRenderEngine = new GraphicRenderEngine();
-		this->_graphicRenderEngine->init();
-	}
-	if ( ( mode & NCURSES ) == NCURSES )
 	{
 		this->_ncursesRenderEngine = new NcursesRenderEngine();
 		this->_ncursesRenderEngine->init();
+		this->_ncursesRenderEngine->setMode( GRAPHIC );
+		SET_COLOR( COLOR_1 );
+	}
+	else if ( ( mode & NCURSES ) == NCURSES )
+	{
+		this->_ncursesRenderEngine = new NcursesRenderEngine();
+		this->_ncursesRenderEngine->init();
+		this->_ncursesRenderEngine->setMode( NCURSES );
+		SET_COLOR( COLOR_2 );
 	}
 	return ( true );
 }
@@ -111,6 +120,10 @@ int				CoreEngine::run()
 		// NCURSES
 		if ( this->_ncursesRenderEngine )
 		{
+			if ( this->_ncursesRenderEngine->getMode() == GRAPHIC )
+				mvprintw( 0, this->_ncursesRenderEngine->getWidth() / 2 - 16, "-- Beautiful graphics mode ;) --");
+			else
+				mvprintw( 0, this->_ncursesRenderEngine->getWidth() / 2 - 13, "-- Simple ncurses mode --");
 			this->_program->ncursesRender( *this->_ncursesRenderEngine );
 			wrefresh( &getNcursesRenderEngine().getWindow() );
 		}
