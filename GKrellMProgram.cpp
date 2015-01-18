@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 17:17:31 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 17:28:32 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,15 @@ bool			GKrellMProgram::init()
 	ModuleObject *memoryModule = new ModuleObject( "Memory", Vector2f( 100, 2 ), Vector2f( 25, 7 ) );
 	memoryModule->addComponent( new Memory() );
 
+	ModuleObject *cpuModule = new ModuleObject( "CPU", Vector2f( 0, 9 ), Vector2f( 75, 7 ) );
+	cpuModule->addComponent( new Cpu() );
+
 	addObject( hostnameModule );
 	addObject( userNameModule );
 	addObject( OSInfoModule );
 	addObject( currentTimeModule );
 	addObject( memoryModule );
+	addObject( cpuModule );
 
 	// END INIT
 	return ( true );

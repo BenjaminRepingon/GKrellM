@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 19:56:40 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 17:14:41 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 17:25:25 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,10 @@ void			Cpu::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	drawRectangleBorder();
 
-	drawString( Vector2f(0, 0), this->_cpuModel );
-	drawString( Vector2f(0, 0), this->_cpuCore );
-	drawString( Vector2f(0, 0), this->_cpuClock );
+	drawString( Vector2f(3, 1), "Cpu:" );
+	drawString( Vector2f(3, 3), this->_cpuModel );
+	drawString( Vector2f(3, 4), this->_cpuCore );
+	drawString( Vector2f(3, 5), this->_cpuClock );
 
 	(void)renderEngine;
 }
