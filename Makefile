@@ -6,7 +6,7 @@
 #    By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 09:52:30 by rbenjami          #+#    #+#              #
-#    Updated: 2015/01/18 10:08:53 by rbenjami         ###   ########.fr        #
+#    Updated: 2015/01/18 10:14:38 by rbenjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,5 +58,9 @@ fclean:			clean
 
 re:				fclean all
 
+install:
+	brew update
+	brew install sdl2
+	cp -R ~/.brew/Cellar/sdl2 .
 
 .PHONY: all, clean, fclean, re
