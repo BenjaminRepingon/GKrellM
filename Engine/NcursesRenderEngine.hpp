@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/10 12:55:47 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/01/11 22:14:27 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 14:17:22 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define NCURSES_RENDER_ENGINE
 # include <ncurses.h>
 # include "IMonitorDisplay.hpp"
+# include "GeometricDrawer.hpp"
 # define SET_COLOR(COLOR) (attron(COLOR_PAIR(COLOR)))
 # define COLOR_GRAY (COLOR_WHITE + 1)
 # define COLOR_HIGH_YELLOW (COLOR_WHITE + 2)
@@ -30,16 +31,14 @@ public:
 	virtual int				getWidth() const;
 	virtual int				getHeight() const;
 
-	WINDOW &				getWindow() const;
 	virtual void			init( void );
-
-	bool 					isInit( void );
+	WINDOW &				getWindow() const;
+	void					destroy();
 
 private:
-	WINDOW*					_window;
 	int						_width;
 	int						_height;
-	bool					_isInit;
+	WINDOW *				_window;
 };
 
 #endif

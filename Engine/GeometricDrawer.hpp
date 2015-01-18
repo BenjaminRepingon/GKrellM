@@ -7,6 +7,7 @@ class GeometricDrawer
 {
 public:
 	static void				drawRectangleBorder( Vector2f const & pos, int width, int height );
+	static void				drawString( Vector2f const & pos, std::string const & str );
 
 private:
 	GeometricDrawer();

@@ -2,13 +2,17 @@
 
 void				GeometricDrawer::drawRectangleBorder( Vector2f const & pos, int width, int height )
 {
-	(void)pos;
-	for ( int i = 0; i < width; ++i )
+	for ( int i = pos.getX(); i < width + pos.getX(); ++i )
 	{
-		for ( int j = 0; j < height; ++j )
+		for ( int j = pos.getY(); j < height + pos.getY(); ++j )
 		{
-			if ( i == 0 || j == 0 || i == width - 1 || j == height - 1 )
+			if ( i == pos.getX() || j == pos.getY() || i == width + pos.getX() - 1 || j == height + pos.getY() - 1 )
 				mvprintw( j, i, "+" );
 		}
 	}
+}
+
+void				GeometricDrawer::drawString( Vector2f const & pos, std::string const & str )
+{
+	mvprintw( pos.getY(), pos.getX(), str.c_str() );
 }

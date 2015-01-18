@@ -1,7 +1,28 @@
 # include "ProgramObject.hpp"
 
 ProgramObject::ProgramObject() :
-	_pos( new Vector2f( 0, 0 ) ),
+	_pos( Vector2f( 0, 0 ) ),
+	_widthHeight( 0, 0 ),
+	_childrens( 0 ),
+	_components( 0 ),
+	_coreEngine( 0 )
+{
+	return ;
+}
+
+ProgramObject::ProgramObject( Vector2f pos ) :
+	_pos( pos ),
+	_widthHeight( 0, 0 ),
+	_childrens( 0 ),
+	_components( 0 ),
+	_coreEngine( 0 )
+{
+	return ;
+}
+
+ProgramObject::ProgramObject( Vector2f pos, Vector2f widthHeight ) :
+	_pos( pos ),
+	_widthHeight( widthHeight ),
 	_childrens( 0 ),
 	_components( 0 ),
 	_coreEngine( 0 )
@@ -10,7 +31,8 @@ ProgramObject::ProgramObject() :
 }
 
 ProgramObject::ProgramObject( ProgramObject const & src ) :
-	_pos( new Vector2f( 0, 0 ) ),
+	_pos( Vector2f( 0, 0 ) ),
+	_widthHeight( 0, 0 ),
 	_childrens( 0 ),
 	_components( 0 ),
 	_coreEngine( 0 )
@@ -28,7 +50,7 @@ ProgramObject &	ProgramObject::operator=( ProgramObject const & rhs )
 {
 	if ( this != &rhs )
 	{
-		this->_pos = &rhs.getPos();
+		this->_pos = rhs.getPos();
 		this->_childrens = rhs.getChildrens();
 		this->_components = rhs.getComponents();
 		this->_coreEngine = &rhs.getCoreEngine();
@@ -136,14 +158,14 @@ void				ProgramObject::setParent( ProgramObject * value )
 
 void				ProgramObject::setPos( Vector2f & value )
 {
-	this->_pos = &value;
+	this->_pos = value;
 
 	return ;
 }
 
-Vector2f &			ProgramObject::getPos() const
+Vector2f			ProgramObject::getPos() const
 {
-	return ( *this->_pos );
+	return ( this->_pos );
 }
 
 ProgramObject &		ProgramObject::getParent() const
@@ -164,4 +186,14 @@ std::vector<ProgramObject *>	ProgramObject::getChildrens( void ) const
 std::vector<ProgramComponent *>	ProgramObject::getComponents( void ) const
 {
 	return ( this->_components );
+}
+
+int						ProgramObject::getWidth( void ) const
+{
+	return ( static_cast<int>( this->_widthHeight.getX() ) );
+}
+
+int						ProgramObject::getHeight( void ) const
+{
+	return ( static_cast<int>( this->_widthHeight.getY() ) );
 }

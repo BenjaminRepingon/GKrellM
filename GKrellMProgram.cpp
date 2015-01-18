@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   GKrellMProgram.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 20:45:24 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 14:57:59 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,26 @@ bool			GKrellMProgram::init()
 {
 	// START INIT
 
-	ModuleObject *hostnameModule = new ModuleObject( "Hostname" );
+	ModuleObject *hostnameModule = new ModuleObject( "Hostname", Vector2f( 0, 0 ), Vector2f( 20, 5 ) );
 	hostnameModule->addComponent( new Hostname() );
-	hostnameModule->addComponent( new Username() );
-	hostnameModule->addComponent( new OSInfo() );
-	hostnameModule->addComponent( new CurrentTime() );
-	hostnameModule->addComponent( new Memory() );
+
+	ModuleObject *userNameModule = new ModuleObject( "Username", Vector2f( 20, 0 ), Vector2f( 20, 5 ) );
+	userNameModule->addComponent( new Username() );
+
+	// ModuleObject *OSInfoModule = new ModuleObject( "OSInfo" );
+	// OSInfoModule->addComponent( new OSInfo() );
+
+	// ModuleObject *currentTimeModule = new ModuleObject( "CurrentTime" );
+	// currentTimeModule->addComponent( new CurrentTime() );
+
+	// ModuleObject *memoryModule = new ModuleObject( "Memory" );
+	// memoryModule->addComponent( new Memory() );
 
 	addObject( hostnameModule );
+	addObject( userNameModule );
+	// addObject( OSInfoModule );
+	// addObject( currentTimeModule );
+	// addObject( memoryModule );
 
 	// END INIT
 	return ( true );

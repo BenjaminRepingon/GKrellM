@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Username.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 18:39:35 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/17 18:49:29 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 15:20:25 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Username.hpp"
-#include <sys/types.h>
-#include <pwd.h>
-#include <unistd.h>
-#include <sys/types.h>
+# include "Username.hpp"
+# include <sys/types.h>
+# include <pwd.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include "../Engine/ProgramObject.hpp"
 
 Username::Username() : ProgramComponent()
 {
@@ -52,9 +53,17 @@ void			Username::update( float delta )
 
 	pwd = getpwuid(id);
 	this->_username = pwd->pw_name;
-	std::cout << this->_username << std::endl;
 	(void)delta;
 }
+
+void			Username::ncursesRender( NcursesRenderEngine & renderEngine )
+{
+	(void)renderEngine;
+	drawRectangleBorder();
+	drawString( Vector2f( 5, 1 ), "Username:" );
+	drawString( Vector2f( 6, 3 ), this->_username );
+}
+
 void			Username::graphicRender( GraphicRenderEngine & renderEngine )
 {
 	(void)renderEngine;
