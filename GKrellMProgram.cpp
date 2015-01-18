@@ -6,7 +6,7 @@
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 15:30:07 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 17:28:32 by dsousa           ###   ########.fr       */
+/*   Updated: 2015/01/18 18:22:49 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "Components/OSInfo.hpp"
 # include "Components/Memory.hpp"
 # include "Components/Cpu.hpp"
+# include "Components/MemoryGraphic.hpp"
 
 GKrellMProgram::GKrellMProgram() : Program()
 {
@@ -60,17 +61,21 @@ bool			GKrellMProgram::init()
 	ModuleObject *currentTimeModule = new ModuleObject( "CurrentTime", Vector2f( 75, 2 ), Vector2f( 25, 7 ) );
 	currentTimeModule->addComponent( new CurrentTime() );
 
-	ModuleObject *memoryModule = new ModuleObject( "Memory", Vector2f( 100, 2 ), Vector2f( 25, 7 ) );
+	ModuleObject *memoryModule = new ModuleObject( "Memory", Vector2f( 100, 2 ), Vector2f( 31, 7 ) );
 	memoryModule->addComponent( new Memory() );
 
 	ModuleObject *cpuModule = new ModuleObject( "CPU", Vector2f( 0, 9 ), Vector2f( 75, 7 ) );
 	cpuModule->addComponent( new Cpu() );
+
+	ModuleObject *memoryGraphicModule = new ModuleObject( "Memory Graphic", Vector2f( 0, 16 ), Vector2f( 75, 7 ) );
+	memoryGraphicModule->addComponent( new MemoryGraphic() );
 
 	addObject( hostnameModule );
 	addObject( userNameModule );
 	addObject( OSInfoModule );
 	addObject( currentTimeModule );
 	addObject( memoryModule );
+	addObject( memoryGraphicModule );
 	addObject( cpuModule );
 
 	// END INIT

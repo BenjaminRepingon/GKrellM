@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Username.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 18:39:35 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 15:20:25 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 18:25:35 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			Username::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	(void)renderEngine;
 	drawRectangleBorder();
-	drawString( Vector2f( 5, 1 ), "Username:" );
+	drawString( Vector2f( 5, 1 ), "Patronyme:" );
 	drawString( Vector2f( 6, 3 ), this->_username );
 }
 

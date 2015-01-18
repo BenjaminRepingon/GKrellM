@@ -6,7 +6,7 @@
 #    By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/05 09:52:30 by rbenjami          #+#    #+#              #
-#    Updated: 2015/01/18 17:16:39 by dsousa           ###   ########.fr        #
+#    Updated: 2015/01/18 18:10:08 by dsousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS			=	$(NAME).cpp							\
 					Components/Username.cpp				\
 					Components/CurrentTime.cpp			\
 					Components/Memory.cpp				\
+					Components/MemoryGraphic.cpp		\
 					Components/OSInfo.cpp				\
 					Components/Cpu.cpp
 

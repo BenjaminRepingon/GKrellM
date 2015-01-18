@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CurrentTime.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 18:52:22 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 16:14:44 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 18:24:28 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			CurrentTime::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	(void)renderEngine;
 	drawRectangleBorder();
-	drawString( Vector2f( 5, 1), "CurrentTime:" );
+	drawString( Vector2f( 3, 1), "Horodatage temporel:" );
 	drawString( Vector2f( 1, 3 ), this->_date );
 }
 

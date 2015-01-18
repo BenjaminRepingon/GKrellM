@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   OSInfo.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/17 19:19:04 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 16:10:51 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/01/18 18:29:06 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			OSInfo::update( float delta )
 void			OSInfo::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	drawRectangleBorder();
-	drawString( Vector2f( 5, 1), "OSInfo:" );
+	drawString( Vector2f( 5, 1), "Comput-1:" );
 	drawString( Vector2f( 3, 3 ), this->_OSInfo );
 	(void)renderEngine;
 }

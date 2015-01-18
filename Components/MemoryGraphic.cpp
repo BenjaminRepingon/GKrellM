@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Memory.cpp                                         :+:      :+:    :+:   */
+/*   MemoryGraphic.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsousa <dsousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/17 20:29:32 by dsousa            #+#    #+#             */
-/*   Updated: 2015/01/18 18:22:23 by dsousa           ###   ########.fr       */
+/*   Created: 2015/01/18 17:29:54 by dsousa            #+#    #+#             */
+/*   Updated: 2015/01/18 18:23:52 by dsousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Memory.hpp"
+
+# include "MemoryGraphic.hpp"
 # include <iostream>
 # include <sstream>
 # include "../Engine/GeometricDrawer.hpp"
@@ -21,34 +22,33 @@
 # include <sys/sysctl.h>
 # include <sys/types.h>
 
-Memory::Memory() : ProgramComponent()
+MemoryGraphic::MemoryGraphic() : ProgramComponent()
 {
 	return ;
 }
 
-Memory::Memory( Memory const & cpy ) : ProgramComponent( cpy )
+MemoryGraphic::MemoryGraphic( MemoryGraphic const & cpy ) : ProgramComponent( cpy )
 {
 	*this = cpy;
 }
 
-Memory::~Memory()
+MemoryGraphic::~MemoryGraphic()
 {
 
 }
 
-Memory &				Memory::operator=( Memory const & lhs )
+MemoryGraphic &				MemoryGraphic::operator=( MemoryGraphic const & )
 {
-	(void)lhs;
 	return (*this);
 }
 
-void			Memory::input( float delta )
+void			MemoryGraphic::input( float delta )
 {
 	(void)delta;
 
 }
 
-void			Memory::update( float delta )
+void			MemoryGraphic::update( float delta )
 {
 	std::stringstream ss;
 	vm_size_t					page_size;
@@ -57,7 +57,7 @@ void			Memory::update( float delta )
 	vm_statistics64_data_t		vm_stats;
 
 	/*
-	** TOTAL Memory
+	** TOTAL MemoryGraphic
 	*/
 	long long unsigned int rm;
 	int mib[]={CTL_HW,HW_MEMSIZE};
@@ -70,13 +70,10 @@ void			Memory::update( float delta )
 	else
 		rm = 0.0;
 
-	ss << "Capacitance : " << static_cast<float>( ( rm / 1024 ) / 1024 ) << "Mo";
 
 	/*
-	** FREE & USED Memory
+	** FREE & USED MemoryGraphic
 	*/
-	this->_memoryInfoTotal = ss.str();
-	ss.str("");
 
 	mach_port = mach_host_self();
 	count = sizeof(vm_stats) / sizeof(natural_t);
@@ -84,28 +81,24 @@ void			Memory::update( float delta )
 	if ( KERN_SUCCESS == host_page_size( mach_port, &page_size ) &&
 		KERN_SUCCESS == host_statistics64( mach_port, HOST_VM_INFO, reinterpret_cast<host_info64_t>( &vm_stats ), &count ) )
 	{
-		long long free_memory = static_cast<int64_t>( vm_stats.free_count ) * static_cast<int64_t>( page_size );
-
 		long long used_memory = ( static_cast<int64_t>( vm_stats.active_count ) + static_cast<int64_t>( vm_stats.inactive_count ) + static_cast<int64_t>( vm_stats.wire_count ) ) * static_cast<int64_t>( page_size );
-		ss << "No memory Land : " << static_cast<float>((free_memory / 1024.0 / 1024.0)) << "Mo";
 
-		this->_memoryInfoFree = ss.str();
-		ss.str("");
-
-		ss << "Revolu  : " << static_cast<float>((used_memory / 1024.0) / 1024.0) << "Mo";
-
-		this->_memoryInfoUsed = ss.str();
-		ss.str("");
+		this->_memory = static_cast<int>(static_cast<float>( ( used_memory / 1024 ) / 1024 ) / static_cast<float>( ( rm / 1024 ) / 1024 ) * 100);
 	}
 
 	(void)delta;
 }
-void			Memory::ncursesRender( NcursesRenderEngine & renderEngine )
+void			MemoryGraphic::ncursesRender( NcursesRenderEngine & renderEngine )
 {
 	(void)renderEngine;
-	drawRectangleBorder();
-	drawString( Vector2f( 5, 1), "Map memory analyzer: " );
-	drawString( Vector2f( 1, 3 ), this->_memoryInfoTotal );
-	drawString( Vector2f( 1, 4 ), this->_memoryInfoFree );
-	drawString( Vector2f( 1, 5 ), this->_memoryInfoUsed );
+	drawString( Vector2f( 1, 1), "Analize With Polynomial Interpolation Of Random Access Memory: " );
+
+	for (int i = 0; i < 100; ++i)
+	{
+		if ( i < this->_memory )
+			drawString( Vector2f( i, 2 ), "#" );
+		else
+			drawString( Vector2f( i, 2 ), " " );
+
+	}
 }
